@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -31,3 +32,14 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
+
+
+class ProfilePicForm(forms.ModelForm):
+	profile_img = forms.ImageField(label="Profile Picture")
+	profile_bio = forms.CharField(label="Profile Bio", widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Profile Bio'}))
+	social_link = forms.CharField(label="Facebook", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Social Link'}))
+	
+	
+	class Meta:
+		model = Profile
+		fields = ('profile_img', 'profile_bio', 'social_link')

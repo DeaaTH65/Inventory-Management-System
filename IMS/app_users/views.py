@@ -75,3 +75,10 @@ def update_user(request):
 	else:
 		messages.success(request, ("You Must Be Logged In To View That Page..."))
 		return redirect('home')
+
+
+def user_profile(request, pk):
+    """ user = request.User.objects.all()
+    profile = Profile.objects.all()
+    context = {'user': user, 'profile': profile} """
+    return render(request, 'app_users/profile.html')

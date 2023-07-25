@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} | Profile {% endblock title %}
+
+{% block content %}
+
+<br/>
+<div class="container-fluid">
+    <h1 align="center" class="bg-primary"> {{ user.username }} </h1>
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+                <img src="{{ user.profile.profile_img.url }}" alt="{{ product.name }}" class="card-img-top" height="500" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 card text-dark bg-info">
+            <br/>
+            <div class="card text-black bg-light mb-3">
+                <div class="card-header bg-secondary"><h3>{{user.first_name}} {{user.last_name}}</h3></div>
+                <div class="card-body">
+                <h5 class="card-title">{{user.email}}</h5>
+                <hr/>
+                <p><button class="btn btn-info">Bio:</button></p>
+                <p class="card-text">{{ user.profile.profile_bio }}</p>                               
+                </div>
+                <div class="card-body bg-primary"><p>Social: {{ user.profile.social_link }}</p></div>
+            </div>          
+            <p>Updates : {{ user.profile.date_modified|timesince }} </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

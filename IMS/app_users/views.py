@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .forms import SignUpForm, ProfilePicForm
 from django.contrib import messages
+from app_inventory.models import Product
 
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    products = Product.objects.all().order_by("-id")
+    context = {'products': products}
+    return render(request, 'home.html', context)
 
 
 def login_user(request):

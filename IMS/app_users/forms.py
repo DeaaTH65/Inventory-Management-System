@@ -37,7 +37,7 @@ class SignUpForm(UserCreationForm):
 class ProfilePicForm(forms.ModelForm):
 	profile_img = forms.ImageField(label="Profile Picture")
 	profile_bio = forms.CharField(label="Profile Bio", widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Profile Bio'}))
-	social_link = forms.CharField(label="Facebook", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Social Link'}))
+	social_link = forms.CharField(label="Social", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Social Link'}))
 	
 	
 	class Meta:

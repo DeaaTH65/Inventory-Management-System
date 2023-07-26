@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
 	def __init__(self, *args, **kwargs):
@@ -42,4 +42,4 @@ class ProfilePicForm(forms.ModelForm):
 	
 	class Meta:
 		model = Profile
-		fields = ('profile_img', 'profile_bio', 'social_link')
+		fields = ('profile_img', 'profile_bio', 'social_link',)

@@ -2,13 +2,36 @@
 
 {% block title %} | Billing  {% endblock title %}
 
-
+{% load static %}
 {% block content %}
+<div class="container">
+    <h1 align="center" class="bg-success">Thank you for your purchase!</h1>
+    <div class="row">
+        <div class="col-sm-6 card text-dark bg-info">
+            <br/>
+            <div class="card text-black bg-light mb-3">
+                <div class="card-header bg-secondary"><h3>Product: {{ purchase.product.name }}</h3></div>
+                <div class="card-body">
+                <h5 class="card-title">Quantity: {{ purchase.quantity }}</h5>
+                <hr/>
+                <p class="card-text">{{ product.description }}</p>
+                <p><button class="btn btn-success">Total Amount: Rs.{{ purchase.total_amount }}</button></p>
+                </div>
+            </div>           
+            Purchase Date: {{ purchase.purchase_date }}
+        </div>
 
-<h1>Thank you for your purchase!</h1>
-<p>Product: {{ purchase.product.name }}</p>
-<p>Quantity: {{ purchase.quantity }}</p>
-<p>Total Amount: ${{ purchase.total_amount }}</p>
-<p>Purchase Date: {{ purchase.purchase_date }}</p>
-
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+                <div class="container">
+                <img src="{% static 'images/khalti.jpg' %}" alt="Khalti" class="card-img-top" height="500">
+                <div>
+                <h5 class="card-title">Please pay the amount</h5>
+                <p class="card-text">Send us screenshot of the amount paid in this number: 981234567. Your delivery will start immedaitely</p>
+            </div>
+          </div>
+        </div>  
+    </div>
+</div>
 {% endblock content %}

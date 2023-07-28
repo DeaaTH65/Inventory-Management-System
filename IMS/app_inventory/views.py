@@ -31,6 +31,7 @@ def buy_product(request, pk):
     context = {'product': product, 'form': form}
     return render(request, 'app_inventory/buy_product.html', context)
 
+
 @login_required
 def billing(request, purchase_id):
     purchase = get_object_or_404(Purchase, id=purchase_id)

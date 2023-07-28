@@ -1,0 +1,20 @@
+body {
+    background-color: powderblue;
+}
+
+
+h1 {
+    color: blue;
+}
+
+  
+.products {
+    display: inline-block;
+    margin-top: 4%;
+    padding: 2px;
+}  
+
+.product {
+    height: 400px;
+    width: 300px; 
+}

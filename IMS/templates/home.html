@@ -9,35 +9,24 @@
 <br/>
 
 {% for product in products %}
-
-    <div class="container-fluid">
-        <div class="col-sm-6">
-            <div class="card text-dark bg-info mb-3" style="max-width: 40rem;">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top" height="400">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'show_product' product.id %}">{{ product.name }}</a></h5>
-                    {% comment %} <p class="card-text">{{ product.description }}</p> {% endcomment %}
-                    <hr/>
-                    {% comment %} <p>Category: {{ product.category }}</p> {% endcomment %}
-                    <div class="container">
-                        <div class="row">
-                          <div class="col">
-                            <button class="btn btn-success">Price: Rs.{{ product.price }}</button></small>
-                          </div>
-                          <div class="col">
-                          </div>
-                          <div class="col">
-                            Remaining: {{ product.count }}
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-            <br/><br/>
+<div class="products">
+  <div class="product" style="max-width: 30rem;">
+    <div class="card text-dark bg-info mb-3">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top" height="300">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'show_product' product.id %}">{{ product.name }}</a></h5>
+        {% comment %} <p class="card-text">{{ product.description }}</p> {% endcomment %}
+        <hr/>
+        {% comment %} <p>Category: {{ product.category }}</p> {% endcomment %}
+        <div class="container">
+          <div class="row">
+            <button class="btn btn-success">Price: Rs.{{ product.price }}</button></small>
+          </div>
         </div>
+      </div>
     </div>
-
+  </div>
+</div>
 {% endfor %}
-
 
 {% endblock content %}

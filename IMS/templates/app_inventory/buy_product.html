@@ -25,9 +25,10 @@
 
         <div class="col-sm-8 card text-dark bg-info">
             <form method="POST" action="">
+                {% csrf_token %}
                 {{ form.as_p }}
                 <br/>
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit" value="buy">Submit</button>
             </form>
         </div>
     </div>

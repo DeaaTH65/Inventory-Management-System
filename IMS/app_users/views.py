@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .forms import SignUpForm, ProfilePicForm
 from django.contrib import messages
-from app_inventory.models import Product
+from app_inventory.models import Product, Purchase
 
 
 
@@ -78,7 +78,5 @@ def update_user(request):
 
 
 def user_profile(request, pk):
-    """ user = request.User.objects.all()
-    profile = Profile.objects.all()
-    context = {'user': user, 'profile': profile} """
-    return render(request, 'app_users/profile.html')
+    purchase = Purchase.objects.all()
+    return render(request, 'app_users/profile.html', {'purchase': purchase})

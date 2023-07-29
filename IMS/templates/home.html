@@ -6,12 +6,10 @@
 {% block content %}
 
 <h1>Product List</h1>
-<br/>
-
 {% for product in products %}
 <div class="products">
   <div class="product" style="max-width: 30rem;">
-    <div class="card text-dark bg-info mb-3">
+    <div class="card text-dark mb-3" style="background-color: #dc3545;">
       <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top" height="300">
       <div class="card-body">
         <h5 class="card-title"><a href="{% url 'show_product' product.id %}">{{ product.name }}</a></h5>

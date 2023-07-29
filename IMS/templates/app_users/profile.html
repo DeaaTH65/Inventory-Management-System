@@ -5,7 +5,7 @@
 {% block content %}
 {% load static %}
 <br/>
-<div class="container-fluid">
+<div class="container">
     <h1 align="center" class="bg-primary"> {{ user.username }} </h1>
     <div class="row">
         <div class="col-sm-6">
@@ -35,5 +35,27 @@
             <p>Updates : {{ user.profile.date_modified|timesince }} </p>
         </div>
     </div>
+</div>
+<br/><br/>
+<div class="container">
+    <h1 align="center" class="bg-success"> Your Purchases </h1>
+    {% for product in purchase %}
+    {% if product.user == user %}   
+        <div class="products">
+            <div class="card" style="width: 15rem; background-color: #20c997;">
+                <h5 class="card-header">{{product.name}}</h5>
+                <div class="card-body">
+                <img src="{{ product.product.image.url }}" alt="{{ product.name }}" class="card-img-top" height="200" />
+                <p class="card-text">Quantity: {{product.quantity}}</p>
+                <a class="btn btn-primary">Status: On Delivery </a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{purchase_date}}
+                </div>
+            </div>     
+        </div>
+    {% endif %}
+    {% endfor %}
+    <br/><br/>
 </div>
 {% endblock content %}

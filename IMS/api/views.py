@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer
+from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer, UserSerializer
 from app_inventory.models import Product, Purchase
 from app_users.models import Profile
+from django.contrib.auth.models import User
 
 
 
@@ -12,6 +13,8 @@ def getRoutes(request):
         'GET /api',
         'GET /api/products',
         'GET /api/products/:id',
+        'GET /api/users',
+        'GET /api/users/:id',
         'GET /api/profiles',
         'GET /api/profiles/:id',
         'GET /api/purchases',
@@ -31,6 +34,20 @@ def getProducts(request):
 def getProduct(request, pk):
     room = Product.objects.get(id=pk)
     serializer = ProductSerializer(room, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getUsers(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getUser(request, pk):
+    user = User.objects.get(id=pk)
+    serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
 

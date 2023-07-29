@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from app_inventory.models import Product, Purchase
 from app_users.models import Profile
+from django.contrib.auth.models import User
 
 
 class ProductSerializer(ModelSerializer):
@@ -18,4 +19,10 @@ class ProfileSerializer(ModelSerializer):
 class PurchaseSerializer(ModelSerializer):
     class Meta:
         model = Purchase
+        fields = '__all__'
+        
+        
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
         fields = '__all__'

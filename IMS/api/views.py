@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer, UserSerializer, UserLoginSerializer
+from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer, UserSerializer, UserLoginSerializer, UserRegistrationSerializer
 from app_inventory.models import Product, Purchase
 from app_users.models import Profile
 from django.contrib.auth.models import User
@@ -118,3 +118,13 @@ def userlogin(request):
 def userlogout(request):
     logout(request)
     return Response({"message": "Logged out successfully."}, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+def userregister(request):
+    serializer = UserRegistrationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({"message": "User registered successfully."}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

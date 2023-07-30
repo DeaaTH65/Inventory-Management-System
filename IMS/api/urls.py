@@ -17,4 +17,5 @@ urlpatterns = [
     path('add_products/', views.postProduct),
     path('login/', views.userlogin),
     path('logout/', views.userlogout),
+    path('register/', views.userregister),
 ]

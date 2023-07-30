@@ -4,6 +4,7 @@ from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerialize
 from app_inventory.models import Product, Purchase
 from app_users.models import Profile
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -19,6 +20,8 @@ def getRoutes(request):
         'GET /api/profiles/:id',
         'GET /api/purchases',
         'GET /api/purchases/:id',
+        
+        'GET /api/add_products',
     ]
     return Response(routes)
 
@@ -58,6 +61,7 @@ def getProfiles(request):
     return Response(serializer.data)
 
 
+
 @api_view(['GET'])
 def getProfile(request, pk):
     profile = Profile.objects.get(id=pk)
@@ -77,3 +81,14 @@ def getPurchase(request, pk):
     purchase = Purchase.objects.get(id=pk)
     serializer = PurchaseSerializer(purchase, many=False)
     return Response(serializer.data)
+
+
+
+@csrf_exempt
+@api_view(['POST'])
+def postProduct(request):
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)

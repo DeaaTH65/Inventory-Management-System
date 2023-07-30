@@ -13,4 +13,6 @@ urlpatterns = [
     path('profiles/<str:pk>/', views.getProfile),
     path('purchases/', views.getPurchases),
     path('purchases/<str:pk>/', views.getPurchase),
+    
+    path('add_products/', views.postProduct),
 ]

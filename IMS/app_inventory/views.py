@@ -24,6 +24,8 @@ def buy_product(request, pk):
             purchase.user = request.user
             purchase.total_amount = product.price * purchase.quantity
             purchase.save()
+            product.count -= purchase.quantity
+            product.save()
             return redirect('billing', purchase_id=purchase.id)
     else:
         form = PurchaseForm(initial={'product': product})

@@ -24,8 +24,8 @@ def getRoutes(request):
         'GET /api/purchases/:id',
         
         'GET /api/add_products',
-        'GET /api/userlogin',
-        'GET /api/userlogout',
+        'GET /api/login',
+        'GET /api/logout',
     ]
     return Response(routes)
 

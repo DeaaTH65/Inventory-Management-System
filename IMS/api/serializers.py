@@ -47,3 +47,9 @@ class UserRegistrationSerializer(ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+    
+    
+class BuySerializer(ModelSerializer):
+    class Meta:
+        model = Purchase
+        exclude = ['user', 'total_amount']

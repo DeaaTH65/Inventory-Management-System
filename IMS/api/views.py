@@ -1,6 +1,6 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer, UserSerializer, UserLoginSerializer, UserRegistrationSerializer
+from .serializers import ProductSerializer, ProfileSerializer, PurchaseSerializer, UserSerializer, UserLoginSerializer, UserRegistrationSerializer, BuySerializer
 from app_inventory.models import Product, Purchase
 from app_users.models import Profile
 from django.contrib.auth.models import User
@@ -26,6 +26,7 @@ def getRoutes(request):
         'GET /api/add_products',
         'GET /api/login',
         'GET /api/logout',
+        'GET /api/register',
     ]
     return Response(routes)
 
@@ -128,3 +129,25 @@ def userregister(request):
         serializer.save()
         return Response({"message": "User registered successfully."}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes(['IsAuthenticated'])
+def buyproduct(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+    except Product.DoesNotExist:
+        return Response({"message": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "POST":
+        serializer = BuySerializer(data=request.data)
+        if serializer.is_valid():
+            purchase = serializer.save(product=product, user=request.user)
+            purchase.total_amount = product.price * purchase.quantity
+            purchase.save()
+
+            product.count -= purchase.quantity
+            product.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

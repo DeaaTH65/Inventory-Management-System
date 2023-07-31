@@ -1,4 +1,6 @@
 This is admin Token.
 you can use this token for using admin privileges.
 
-150932cd7f717151c17862ac56006d90673ae069
+Tristan Token
+
+8cd8f84b93a20c261effc04860b7740a720fb25b

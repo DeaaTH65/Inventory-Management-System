@@ -43,14 +43,14 @@
     {% if product.user == user %}   
         <div class="products">
             <div class="card" style="width: 15rem; background-color: #20c997;">
-                <h5 class="card-header">{{product.name}}</h5>
+                <h5 class="card-header">{{product.product.name}}</h5>
                 <div class="card-body">
                 <img src="{{ product.product.image.url }}" alt="{{ product.name }}" class="card-img-top" height="200" />
                 <p class="card-text">Quantity: {{product.quantity}}</p>
                 <a class="btn btn-primary">Status: On Delivery </a>
                 </div>
                 <div class="card-footer text-muted">
-                    {{purchase_date}}
+                    {{product.purchase_date}}
                 </div>
             </div>     
         </div>
